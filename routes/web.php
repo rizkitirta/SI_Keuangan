@@ -50,4 +50,11 @@ Route::group(['middleware' => 'auth'], function () {
     //Update Pemasukan
     Route::get('/pemasukan/edit/{id}', 'ManagePemasukanController@edit')->name('pemasukan.edit');
     Route::put('/pemasukan/edit/{id}', 'ManagePemasukanController@update')->name('pemasukan.update');
+
+    //Managemen Pengeluaran
+    Route::get('pengeluaran/', 'ManagePengeluaranController@index')->name('pengeluaran.index');
+    Route::get('pengeluaran/add', 'ManagePengeluaranController@add')->name('pengeluaran.add');
+
+    //Insert
+    Route::post('/pengeluaran/add', 'ManagePengeluaranController@store')->name('pengeluaran.store');
 });
