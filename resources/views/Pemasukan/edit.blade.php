@@ -1,7 +1,8 @@
 @extends('layouts.master')
 @section('content')
-    <form action="{{ route('pemasukan.store') }}" method="POST">
-        {{ @csrf_field() }}
+    <form action="{{ route('pemasukan.update', $data->pemasukan_id) }}" method="POST">
+        {{ csrf_field() }}
+		{{ method_field('PUT') }}
         <div class="form-group">
             <label for="exampleFormControlSelect1" class="form-control-label text-white">Pilih Sumber Pemasukan</label>
             <select class="form-control" id="exampleFormControlSelect1" name="sumber">
@@ -33,14 +34,13 @@
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                 name="keterangan">{{ $data->keterangan }}</textarea>
         </div>
-        <button type="submit" class="btn btn-success"> Submit</button>
+        <button type="submit" class="btn btn-success">Update</button>
     </form>
 @endsection
 @section('script')
     <script type="text/javascript">
         $(document).ready(function() {
             $('.datepicker').datepicker();
-        })
-
+        });
     </script>
 @endsection

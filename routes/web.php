@@ -49,4 +49,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Update Pemasukan
     Route::get('/pemasukan/edit/{id}', 'ManagePemasukanController@edit')->name('pemasukan.edit');
+    Route::put('/pemasukan/edit/{id}', 'ManagePemasukanController@update')->name('pemasukan.update');
 });

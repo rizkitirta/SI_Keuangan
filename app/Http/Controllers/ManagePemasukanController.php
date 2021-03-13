@@ -45,7 +45,26 @@ class ManagePemasukanController extends Controller
     {
         $sumbers = DB::table('pemasukan')->get();
         $data = DB::table('manage_pemasukan')->where('pemasukan_id', $id)->first();
-        return view('Pemasukan.edit', compact('data','sumbers'));
+        return view('Pemasukan.edit', compact('data', 'sumbers'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'sumber' => 'required',
+            'nominal' => 'required',
+            'tanggal' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        \DB::table('manage_pemasukan')->where('pemasukan_id',$id)->update([
+            'sumber_pemasukan' => $request->sumber,
+            'nominal' => $request->nominal,
+            'tanggal' => date('Y-m-d', strtotime($request->tanggal)),
+            'keterangan' => $request->keterangan,
+        ]);
+
+        return redirect(route('manage.pemasukan'));
     }
 
     public function yajra(Request $request)
