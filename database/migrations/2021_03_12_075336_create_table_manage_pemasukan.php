@@ -23,7 +23,7 @@ class CreateTableManagePemasukan extends Migration
             $table->primary('pemasukan_id');
             $table->foreign('sumber_pemasukan')
             ->references('id')->on('pemasukan')
-            ->onDelete('restrict');
+            ->onDelete('cascade');
         });
     }
 

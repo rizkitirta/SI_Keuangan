@@ -25,7 +25,6 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     //Sumber Pemasukan
-    Route::get('/sumber-pemasukan', 'PemasukanController@index')->name('sumber.pemasukan');
     Route::get('/sumber-pemasukan/add', 'PemasukanController@add')->name('sumber.add');
 
     //Insert
@@ -52,9 +51,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/pemasukan/edit/{id}', 'ManagePemasukanController@update')->name('pemasukan.update');
 
     //Managemen Pengeluaran
-    Route::get('pengeluaran/', 'ManagePengeluaranController@index')->name('pengeluaran.index');
-    Route::get('pengeluaran/add', 'ManagePengeluaranController@add')->name('pengeluaran.add');
+    Route::get('/pengeluaran/', 'ManagePengeluaranController@index')->name('pengeluaran.index');
+    Route::get('/pengeluaran/add', 'ManagePengeluaranController@add')->name('pengeluaran.add');
 
     //Insert
     Route::post('/pengeluaran/add', 'ManagePengeluaranController@store')->name('pengeluaran.store');
+
+    //Edit Pengeluaran
+    Route::get('/pengeluaran/edit/{id}', 'ManagePengeluaranController@edit')->name('pengeluaran.edit');
+    Route::put('/pengeluaran/edit/{id}', 'ManagePengeluaranController@update')->name('pengeluaran.update');
+});
+
+
+Route::get('add-user',function(){
+    \DB::table('users')->insert([
+        'name' => 'Admin',
+        'email' => 'rizkipou01@gmail.com',
+        'password' => bcrypt('123'),
+    ]);
 });
