@@ -30,8 +30,22 @@
                                     <td>{{ $dt->keterangan }}</td>
                                     <td>
                                         <center>
-                                            <a href="{{ route('pengeluaran.edit', $dt->pengeluaran_id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                                            <a href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                                            <a href="{{ route('pengeluaran.edit', $dt->pengeluaran_id) }}"
+                                                class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</a>
+                                            <form method="POST" id="delete-form-{{ $dt->pengeluaran_id }}"
+                                                action="{{ route('pengeluaran.delete', $dt->pengeluaran_id) }} "
+                                                style="display: none">
+                                                {{ csrf_field() }}
+                                                {{ method_field('delete') }}
+                                            </form>
+                                            <a onclick=" if(confirm('Hapus Pengeluaran?')){
+                                                    event.preventDefault();
+                                                    document.getElementById('delete-form-{{ $dt->pengeluaran_id }}').submit();
+                                                   }else
+                                                   { event.preventDefault(); }							
+                                                   
+                                                   " href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>
+                                                Delete</a>
                                         </center>
                                     </td>
                                 </tr>
@@ -42,13 +56,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
-    <script type="text/javascript">
-        $(document).ready(function() {
-
-        });
-
-    </script>
 @endsection

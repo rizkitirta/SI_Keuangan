@@ -57,7 +57,7 @@ class ManagePemasukanController extends Controller
             'keterangan' => 'required',
         ]);
 
-        \DB::table('manage_pemasukan')->where('pemasukan_id',$id)->update([
+        \DB::table('manage_pemasukan')->where('pemasukan_id', $id)->update([
             'sumber_pemasukan' => $request->sumber,
             'nominal' => $request->nominal,
             'tanggal' => date('Y-m-d', strtotime($request->tanggal)),
@@ -65,6 +65,12 @@ class ManagePemasukanController extends Controller
         ]);
 
         return redirect(route('manage.pemasukan'));
+    }
+
+    public function delete($id)
+    {
+       DB::table('manage_pemasukan')->where('pemasukan_id', $id)->delete();
+       return redirect(route('manage.pemasukan'));
     }
 
     public function yajra(Request $request)
@@ -81,8 +87,9 @@ class ManagePemasukanController extends Controller
         $datatables = Datatables::of($pemasukan)
             ->addColumn('action', function ($ps) {
                 $url_edit = route('pemasukan.edit', $ps->pemasukan_id);
+                $url_delete = route('pemasukan.delete', $ps->pemasukan_id);
                 return '<a href="' . $url_edit . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                <a href="#edit-' . $ps->pemasukan_id . '" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-delete"></i> Hapus</a>';
+                <a href="' . $url_delete . '" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-delete"></i> Hapus</a>';
             })->editColumn('nominal', function ($ps) {
             $nominal = $ps->nominal;
             $nominal = 'Rp ' . number_format($nominal, 0);

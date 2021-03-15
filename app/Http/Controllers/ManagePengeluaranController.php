@@ -61,4 +61,10 @@ class ManagePengeluaranController extends Controller
         return redirect(route('pengeluaran.index'));
 
     }
+
+    public function delete($id)
+    {
+        DB::table('manage_pengeluaran')->where('pengeluaran_id', $id)->delete();
+        return redirect(route('pengeluaran.index'));
+    }
 }

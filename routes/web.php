@@ -11,6 +11,7 @@
 |
  */
 
+use App\Http\Controllers\ManagePengeluaranController;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Update Pemasukan
     Route::get('/pemasukan/edit/{id}', 'ManagePemasukanController@edit')->name('pemasukan.edit');
     Route::put('/pemasukan/edit/{id}', 'ManagePemasukanController@update')->name('pemasukan.update');
+    Route::get('/pemasukan/delete/{id}', 'ManagePemasukanController@delete')->name('pemasukan.delete');
 
     //Managemen Pengeluaran
     Route::get('/pengeluaran/', 'ManagePengeluaranController@index')->name('pengeluaran.index');
@@ -56,17 +58,22 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Insert
     Route::post('/pengeluaran/add', 'ManagePengeluaranController@store')->name('pengeluaran.store');
+    Route::delete('/pengeluaran/delete/{id}','ManagePengeluaranController@delete')->name('pengeluaran.delete');
 
     //Edit Pengeluaran
     Route::get('/pengeluaran/edit/{id}', 'ManagePengeluaranController@edit')->name('pengeluaran.edit');
     Route::put('/pengeluaran/edit/{id}', 'ManagePengeluaranController@update')->name('pengeluaran.update');
+
+    //Laporan 
+    Route::get('/laporan-keuangan/index', 'LaporanController@index')->name('laporan.index');
+    Route::get('/laporan-keuangan/cari', 'LaporanController@cari')->name('laporan.cari');
 });
 
 
 Route::get('add-user',function(){
     \DB::table('users')->insert([
         'name' => 'Admin',
-        'email' => 'rizkipou01@gmail.com',
-        'password' => bcrypt('123'),
+        'email' => 'admin@gmail.com',
+        'password' => bcrypt('admin'),
     ]);
 });
