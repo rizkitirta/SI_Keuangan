@@ -5,7 +5,7 @@
         {{ csrf_field() }}
         <div class="form-group">
             <label for="example-text-input" class="form-control-label text-white">Description</label>
-            <input class="form-control" type="text" value="" name="nama" id="nama" placeholder="Masukan Keterangan">
+            <input class="form-control" type="text" autocomplete="off" name="nama" id="nama" placeholder="Masukan Keterangan">
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
     </form>

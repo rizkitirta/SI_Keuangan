@@ -6,7 +6,7 @@
         <div class="col">
             <div class="card bg-default shadow">
                 <div class="card-header bg-transparent border-0">
-                    <h2 class="text-white mb-0 text-center">Managemen Sumber Pemasukan</h2>
+                    <h2 class="text-white mb-0">Managemen Sumber Pemasukan</h2>
                 </div>
                 <div class="table-responsive">
                     <a href="{{ route('sumber.add') }}" class="btn btn-sm btn-outline-primary ml-3 mb-3 mt-1">Tambah
@@ -47,40 +47,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification"
-            aria-hidden="true">
-            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                <div class="modal-content bg-gradient-danger">
-
-                    <div class="modal-header">
-                        <h6 class="modal-title" id="modal-title-notification">Message</h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="py-3 text-center">
-                            <i class="ni ni-bell-55 ni-3x"></i>
-                            <h4 class="heading mt-4">Apakah Anda Yakin?</h4>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <form method="POST" action="{{ url('/sumber-pemasukan/delete/' . $dt->id) }}">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button class="btn btn-white" type="submit">Delete</button>
-                        </form>
-                        <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button>
-                    </div>
-
                 </div>
             </div>
         </div>

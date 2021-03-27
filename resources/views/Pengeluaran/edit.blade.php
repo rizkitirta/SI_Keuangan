@@ -2,7 +2,7 @@
 @section('content')
     <form action="{{ route('pengeluaran.update', $data->pengeluaran_id) }}" method="POST">
         {{ @csrf_field() }}
-		{{ method_field('PUT') }}
+        {{ method_field('PUT') }}
         <div class="form-group">
             <label for="exampleFormControlInput1" class="form-control-label text-white">Nominal</label>
             <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Masukan Nominal"
@@ -20,7 +20,8 @@
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1" class="form-control-label text-white">Keterangan</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="keterangan">{{ $data->keterangan }}</textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                name="keterangan">{{ $data->keterangan }}</textarea>
         </div>
         <button type="submit" class="btn btn-success"> Submit</button>
     </form>

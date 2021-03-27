@@ -46,21 +46,27 @@
                                 </ol>
                             </nav>
                         </div>
-                        <div class="col-lg-6 col-5 text-right">
-                            <a href="#" class="btn btn-sm btn-neutral">New</a>
-                            <a href="#" class="btn btn-sm btn-neutral">Filters</a>
-                        </div>
                     </div>
                     <!-- Card stats -->
-                  @yield('content')
+                    @yield('content')
                 </div>
-            </div>			
-        </div>     		
+            </div>
+        </div>
     </div>
-    <!-- Argon Scripts -->
-    <!-- Core -->
-    @include('layouts.javascript')
-    @yield('script')
+    <div class="container-fluit ml-9">
+        <div class="card-footer bg-light p-4">
+            <div class="col-md-12 text-center mt-9">
+                <h2 class="font-weight-bold">Contacts</h2>
+                <a href="https://www.instagram.com/rizkitirta07/"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="https://www.facebook.com/rizkitirta07"><i class="fab fa-facebook ml-3 fa-2x"></i></a>
+                <a href="https://wa.me/083169228005/?text=Hallo Rizki!"><i class="fab fa-whatsapp ml-3 fa-2x"></i></a>
+                <h5 class="text-center font-weight-bold mt-2">&copycopyright2021</h5>
+            </div>
+        </div>
+        <!-- Argon Scripts -->
+        <!-- Core -->
+        @include('layouts.javascript')
+        @yield('script')
 </body>
 
 </html>

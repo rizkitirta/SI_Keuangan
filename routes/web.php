@@ -16,28 +16,26 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/home', function () {
-    return redirect('/');
-});
+Route::get('/home','HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', function () {
-        return view('welcome');
+        return redirect(url('/home'));
     });
 
     //Sumber Pemasukan
-    Route::get('/sumber-pemasukan/add', 'PemasukanController@add')->name('sumber.add');
+    Route::get('/sumber-pemasukan/add', 'SumberPemasukanController@add')->name('sumber.add');
 
     //Insert
-    Route::get('/sumber-pemasukan', 'PemasukanController@index')->name('sumber.pemasukan');
-    Route::post('/sumber-pemasukan/add', 'PemasukanController@store')->name('sumber.store');
+    Route::get('/sumber-pemasukan', 'SumberPemasukanController@index')->name('sumber.pemasukan');
+    Route::post('/sumber-pemasukan/add', 'SumberPemasukanController@store')->name('sumber.store');
 
     //Update Sumber Pemasukan
-    Route::get('/sumber-pemasukan/edit/{id}', 'PemasukanController@edit')->name('sumber.edit');
-    Route::put('/sumber-pemasukan/edit/{id}', 'PemasukanController@update')->name('sumber.edit');
+    Route::get('/sumber-pemasukan/edit/{id}', 'SumberPemasukanController@edit')->name('sumber.edit');
+    Route::put('/sumber-pemasukan/edit/{id}', 'SumberPemasukanController@update')->name('sumber.edit');
 
     //Delete
-    Route::delete('/sumber-pemasukan/delete/{id}', 'PemasukanController@delete')->name('sumber.delete');
+    Route::delete('/sumber-pemasukan/delete/{id}', 'SumberPemasukanController@delete')->name('sumber.delete');
 
     //manage pemasukan
     Route::get('/pemasukan', 'ManagePemasukanController@index')->name('manage.pemasukan');
@@ -67,6 +65,12 @@ Route::group(['middleware' => 'auth'], function () {
     //Laporan 
     Route::get('/laporan-keuangan/index', 'LaporanController@index')->name('laporan.index');
     Route::get('/laporan-keuangan/cari', 'LaporanController@cari')->name('laporan.cari');
+    Route::get('/laporan-keuangan/export-excel/{dari}/{sampai}', 'LaporanController@exportExcel');
+
+    Route::get('/logout', function(){
+        \Auth::logout();
+        return redirect('login');
+    });
 });
 
 

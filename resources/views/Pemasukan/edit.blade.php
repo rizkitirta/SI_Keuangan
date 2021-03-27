@@ -17,7 +17,7 @@
         <div class="form-group">
             <label for="exampleFormControlInput1" class="form-control-label text-white">Nominal</label>
             <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Masukan Nominal"
-                name="nominal" value="{{ $data->nominal }}">
+                name="nominal" value="{{ $data->nominal }}" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1" class="form-control-label text-white">Tanggal</label>
@@ -26,13 +26,13 @@
                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                 </div> 
                 <input class="form-control datepicker" placeholder="Select date" type="text" value="06/20/2020"
-                    value="{{ date('m/d/Y', strtotime($data->tanggal)) }}" name="tanggal">
+                    value="{{ date('m/d/Y', strtotime($data->tanggal)) }}" autocomplete="off" name="tanggal">
             </div>
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1" class="form-control-label text-white">Keterangan</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                name="keterangan">{{ $data->keterangan }}</textarea>
+                name="keterangan" autocomplete="off">{{ $data->keterangan }}</textarea>
         </div>
         <button type="submit" class="btn btn-success">Update</button>
     </form>

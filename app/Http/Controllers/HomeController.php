@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+       $pemasukan = DB::table('manage_pemasukan')->sum('nominal');
+       $pengeluaran = DB::table('manage_pengeluaran')->sum('nominal');
+        return view('home',compact('pemasukan', 'pengeluaran'));
     }
 }

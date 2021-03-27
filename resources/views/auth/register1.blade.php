@@ -35,6 +35,9 @@
     <!-- Navbar -->
     <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
         <div class="container">
+            <a class="navbar-brand" href="dashboard.html">
+                <img src="{{ asset('argon/assets/img/brand/white.png') }}">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse"
                 aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -59,7 +62,17 @@
                 </div>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="{{ url('/register') }}" class="nav-link">
+                        <a href="dashboard.html" class="nav-link">
+                            <span class="nav-link-inner--text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="login.html" class="nav-link">
+                            <span class="nav-link-inner--text">Login</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="register.html" class="nav-link">
                             <span class="nav-link-inner--text">Register</span>
                         </a>
                     </li>
@@ -67,21 +80,28 @@
                 <hr class="d-lg-none" />
                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
                     <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="https://www.facebook.com/rizkitirta07" target="_blank"
+                        <a class="nav-link nav-link-icon" href="https://www.facebook.com/creativetim" target="_blank"
                             data-toggle="tooltip" data-original-title="Like us on Facebook">
                             <i class="fab fa-facebook-square"></i>
                             <span class="nav-link-inner--text d-lg-none">Facebook</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="https://www.instagram.com/rizkitirta07" target="_blank"
-                            data-toggle="tooltip" data-original-title="Follow us on Instagram">
+                        <a class="nav-link nav-link-icon" href="https://www.instagram.com/creativetimofficial"
+                            target="_blank" data-toggle="tooltip" data-original-title="Follow us on Instagram">
                             <i class="fab fa-instagram"></i>
                             <span class="nav-link-inner--text d-lg-none">Instagram</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="https://github.com/rizkitirta" target="_blank"
+                        <a class="nav-link nav-link-icon" href="https://twitter.com/creativetim" target="_blank"
+                            data-toggle="tooltip" data-original-title="Follow us on Twitter">
+                            <i class="fab fa-twitter-square"></i>
+                            <span class="nav-link-inner--text d-lg-none">Twitter</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="https://github.com/creativetimofficial" target="_blank"
                             data-toggle="tooltip" data-original-title="Star us on Github">
                             <i class="fab fa-github"></i>
                             <span class="nav-link-inner--text d-lg-none">Github</span>
@@ -111,10 +131,24 @@
                     <div class="card bg-secondary border-0 mb-0">
                         <div class="card-body px-lg-5 py-lg-5">
                             <div class="text-center text-muted mb-4">
-                                <h4>Sign In</h4>
+                                <small>Sign in</small>
                             </div>
                             <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                                 {{ csrf_field() }}
+								<div class="form-group mb-3">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-user-83"></i></span>
+                                        </div>
+                                        <input id="name" type="name" class="form-control" name="name"
+                                            value="{{ old('name') }}" required autofocus>
+                                        @if ($errors->has('name'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
                                 <div class="form-group mb-3">
                                     <div class="input-group input-group-merge input-group-alternative">
                                         <div class="input-group-prepend">
@@ -143,10 +177,15 @@
                                         @endif
                                     </div>
                                 </div>
-                                {{-- <div class="form-group">
-                                   <p>Email : admin@gmail.com</p>
-                                   <p>Password : admin</p>
-                                </div> --}}
+                                <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary my-4">Sign in</button>
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -158,8 +197,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-6">
-                            <a href="{{ route('password.request') }}" class="text-light"><small>Forgot
-                                    password?</small></a>
+                            <a href="#" class="text-light"><small>Forgot password?</small></a>
                         </div>
                         <div class="col-6 text-right">
                             <a href="#" class="text-light"><small>Create new account</small></a>
