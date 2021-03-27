@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ManagePengeluaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,7 +10,7 @@ class LaporanController extends Controller
 {
     public function index()
     {
-        return view('Laporan.index');
+        return view('laporan.index');
     }
 
     public function cari(Request $request)
@@ -30,15 +31,9 @@ class LaporanController extends Controller
         // ->join('pemasukan as s', 'p.sumber_pemasukan', '=', 's.id')
         // ->whereBetween('tanggal', [$dari, $sampai])->sum('nominal');
 
+        $pengeluaran = ManagePengeluaran::whereBetween('tanggal', [$dari, $sampai])->get();
+        $total_pengeluaran = ManagePengeluaran::whereBetween('tanggal', [$dari, $sampai])->sum('nominal');
 
-        $pengeluaran = DB::table('manage_pengeluaran')
-        ->whereBetween('tanggal', [$dari, $sampai])->get();
-
-        $total_pengeluaran = DB::table('manage_pengeluaran')
-        ->whereBetween('tanggal', [$dari, $sampai])->sum('nominal');
-
-        return view('Laporan.index', compact('pengeluaran','total_pengeluaran'));
+        return view('laporan.index', compact('pengeluaran', 'total_pengeluaran'));
     }
-
-  
 }

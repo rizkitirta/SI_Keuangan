@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\ManagePengeluaran;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Uuid;
+use Webpatser\Uuid\Uuid;
 
 class ManagePengeluaranController extends Controller
 {
     public function index()
     {
-        $data = DB::table('manage_pengeluaran')->get();
-        return view('Pengeluaran.index', compact('data'));
+        $data = ManagePengeluaran::all();
+        return view('pengeluaran.index', compact('data'));
     }
 
     public function add()
     {
-        return view('Pengeluaran.add');
+        return view('pengeluaran.add');
     }
 
     public function store(Request $request)
@@ -27,8 +27,8 @@ class ManagePengeluaranController extends Controller
             'keterangan' => 'required',
         ]);
 
-        DB::table('manage_pengeluaran')->insert([
-            'pengeluaran_id' => \Uuid::generate(4),
+        ManagePengeluaran::insert([
+            'pengeluaran_id' => Uuid::generate(4),
             'nominal' => $request->nominal,
             'tanggal' => date('Y-m-d', strtotime($request->tanggal)),
             'keterangan' => $request->keterangan,
@@ -39,32 +39,30 @@ class ManagePengeluaranController extends Controller
 
     public function edit($id)
     {
-        $data = DB::table('manage_pengeluaran')->where('pengeluaran_id', $id)->first();
-        return view('Pengeluaran.edit', compact('data'));
+        $data = ManagePengeluaran::where('pengeluaran_id', $id)->first();
+        return view('pengeluaran.edit', compact('data'));
     }
 
     public function update(Request $request, $id)
     {
-
         $this->validate($request, [
             'nominal' => 'required',
             'tanggal' => 'required',
             'keterangan' => 'required',
         ]);
 
-        DB::table('manage_pengeluaran')->where('pengeluaran_id', $id)->update([
+        ManagePengeluaran::where('pengeluaran_id', $id)->update([
             'nominal' => $request->nominal,
             'tanggal' => date('Y-m-d', strtotime($request->tanggal)),
             'keterangan' => $request->keterangan,
         ]);
 
         return redirect(route('pengeluaran.index'));
-
     }
 
     public function delete($id)
     {
-        DB::table('manage_pengeluaran')->where('pengeluaran_id', $id)->delete();
+        ManagePengeluaran::where('pengeluaran_id', $id)->delete();
         return redirect(route('pengeluaran.index'));
     }
 }
