@@ -38,7 +38,7 @@ class ManagePemasukanController extends Controller
             'keterangan' => $request->keterangan,
         ]);
 
-        return redirect(route('manage.pemasukan'));
+        return redirect(route('manage.pemasukan'))->with('success','Data Berhasil Ditambahkan');
     }
 
     public function edit($id)
@@ -64,13 +64,13 @@ class ManagePemasukanController extends Controller
             'keterangan' => $request->keterangan,
         ]);
 
-        return redirect(route('manage.pemasukan'));
+        return redirect(route('manage.pemasukan'))->with('success','Data Berhasil Diupdate');
     }
 
     public function delete($id)
     {
        DB::table('manage_pemasukan')->where('pemasukan_id', $id)->delete();
-       return redirect(route('manage.pemasukan'));
+       return redirect(route('manage.pemasukan'))->with('success','Data Berhasil Dihapus');
     }
 
   

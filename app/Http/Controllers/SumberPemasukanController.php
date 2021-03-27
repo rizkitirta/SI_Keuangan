@@ -33,7 +33,7 @@ class SumberPemasukanController extends Controller
             'updated_at' => date('Y-m-d-H:i:s'),
         ]);
 
-        return redirect(route('sumber.pemasukan'));
+        return redirect(route('sumber.pemasukan'))->with('success','Data Berhasil Ditambahkan');
     }
 
     public function edit($id)
@@ -55,13 +55,13 @@ class SumberPemasukanController extends Controller
             'updated_at' => date('Y-m-d-H:i:s'),
         ]);
 
-        return redirect(route('sumber.pemasukan'));
+        return redirect(route('sumber.pemasukan'))->with('success','Data Berhasil Diupdate');
 
     }
 
     public function delete($id)
     {
         \DB::table('pemasukan')->where('id', $id)->delete();
-        return redirect(route('sumber.pemasukan'));
+        return redirect(route('sumber.pemasukan'))->with('success','Data Berhasil Dihapus');
     }
 }

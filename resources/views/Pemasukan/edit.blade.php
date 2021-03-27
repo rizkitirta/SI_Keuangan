@@ -1,4 +1,6 @@
 @extends('layouts.master')
+@section('title','Sumber-Pemasukan')
+@section('page','Sumber-Pemasukan')
 @section('content')
     <form action="{{ route('pemasukan.update', $data->pemasukan_id) }}" method="POST">
         {{ csrf_field() }}

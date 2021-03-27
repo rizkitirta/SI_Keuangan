@@ -1,6 +1,8 @@
 @extends('layouts.master')
-@section('page','Laporan Keuangan')
+@section('title', 'Laporan Keuangan')
+@section('page', 'Laporan Keuangan')
 @section('content')
+
     <form action="{{ route('laporan.cari') }}" method="get">
         {{ csrf_field() }}
         <div class="form-group">
@@ -32,7 +34,8 @@
                 <div class="card bg-default shadow">
                     <div class="card-header bg-transparent border-0">
                         <h2 class="text-white mb-0 text-center">Data Pemasukan</h2>
-                        <a href="{{ url('/laporan-keuangan/export-excel/'.$dari. '/' .$sampai) }}" class="btn btn-warning">Export To Excel</a>
+                        <a href="{{ url('/laporan-keuangan/export-excel/' . $dari . '/' . $sampai) }}"
+                            class="btn btn-warning">Export To Excel</a>
                     </div>
                     <div class="table-responsive">
                         <table id="table-pemasukan" class="table align-items-center table-light table-flush">
@@ -74,7 +77,8 @@
                 <div class="card bg-default shadow">
                     <div class="card-header bg-transparent border-0">
                         <h2 class="text-white mb-0 text-center">Data Pengeluaran</h2>
-                        <a href="{{ url('/laporan-keuangan/export-excel/'.$dari. '/' .$sampai) }}" class="btn btn-warning">Export To Excel</a>
+                        <a href="{{ url('/laporan-keuangan/export-excel/' . $dari . '/' . $sampai) }}"
+                            class="btn btn-warning">Export To Excel</a>
                     </div>
                     <div class="table-responsive">
                         <table id="table-pemasukan" class="table align-items-center table-light table-flush">

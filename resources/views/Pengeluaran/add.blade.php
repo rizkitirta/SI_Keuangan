@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('page','Pengeluaran')
 @section('content')
     <form action="{{ route('pengeluaran.store') }}" method="POST">
         {{ @csrf_field() }}

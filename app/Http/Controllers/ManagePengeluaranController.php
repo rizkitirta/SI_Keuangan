@@ -34,7 +34,7 @@ class ManagePengeluaranController extends Controller
             'keterangan' => $request->keterangan,
         ]);
 
-        return redirect(route('pengeluaran.index'));
+        return redirect(route('pengeluaran.index'))->with('success','Data Berhasil Ditambahkan');
     }
 
     public function edit($id)
@@ -58,13 +58,13 @@ class ManagePengeluaranController extends Controller
             'keterangan' => $request->keterangan,
         ]);
 
-        return redirect(route('pengeluaran.index'));
+        return redirect(route('pengeluaran.index'))->with('success','Data Berhasil Diupdate');
 
     }
 
     public function delete($id)
     {
         DB::table('manage_pengeluaran')->where('pengeluaran_id', $id)->delete();
-        return redirect(route('pengeluaran.index'));
+        return redirect(route('pengeluaran.index'))->with('success','Data Berhasil Dihapus');
     }
 }

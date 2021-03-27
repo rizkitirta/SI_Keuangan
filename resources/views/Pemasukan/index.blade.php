@@ -1,6 +1,14 @@
 @extends('layouts.master')
 @section('page', 'Managemen-Pemasukan')
 @section('content')
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            {{ session('success') }}
+        </div>
+    @endif
+
     <!-- Dark table -->
     <div class="row">
         <div class="col">
@@ -32,21 +40,21 @@
                                     <td>{{ $dt->keterangan }}</td>
                                     <td>
                                         <center>
-                                            <a href="{{ route('pengeluaran.edit', $dt->pemasukan_id) }}"
+                                            <a href="{{ route('pemasukan.edit', $dt->pemasukan_id) }}"
                                                 class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</a>
                                             <form method="POST" id="delete-form-{{ $dt->pemasukan_id }}"
-                                                action="{{ route('pengeluaran.delete', $dt->pemasukan_id) }} "
+                                                action="{{ route('pemasukan.delete', $dt->pemasukan_id) }} "
                                                 style="display: none">
                                                 {{ csrf_field() }}
                                                 {{ method_field('delete') }}
                                             </form>
                                             <a onclick=" if(confirm('Hapus Pengeluaran?')){
-                                                    event.preventDefault();
-                                                    document.getElementById('delete-form-{{ $dt->pemasukan_id }}').submit();
-                                                   }else
-                                                   { event.preventDefault(); }							
-                                                   
-                                                   " href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>
+                                                        event.preventDefault();
+                                                        document.getElementById('delete-form-{{ $dt->pemasukan_id }}').submit();
+                                                       }else
+                                                       { event.preventDefault(); }							
+                                                       
+                                                       " href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>
                                                 Delete</a>
                                         </center>
                                     </td>

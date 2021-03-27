@@ -1,6 +1,14 @@
 @extends('layouts.master')
 @section('page', 'Managemen-Sumber-Pemasukan')
 @section('content')
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            {{ session('success') }}
+        </div>
+    @endif
+
     <!-- Dark table -->
     <div class="row">
         <div class="col">
@@ -35,12 +43,12 @@
                                             {{ method_field('delete') }}
                                         </form>
                                         <a onclick=" if(confirm('Hapus Sumber Pemasukan?')){
-                                            event.preventDefault();
-                                            document.getElementById('delete-form-{{ $dt->id }}').submit();
-                                           }else
-                                           { event.preventDefault(); }							
-                                           
-                                           " href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>
+                                                    event.preventDefault();
+                                                    document.getElementById('delete-form-{{ $dt->id }}').submit();
+                                                   }else
+                                                   { event.preventDefault(); }							
+                                                   
+                                                   " href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>
                                             Delete</a>
                                     </td>
                                 </tr>
